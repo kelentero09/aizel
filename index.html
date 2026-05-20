@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aizel Smile 💜</title>
+  <title>Aizel 💜</title>
 
   <style>
     * {
@@ -37,8 +37,16 @@
       position: absolute;
       color: rgba(168, 85, 247, 0.4);
       animation: floatUp 8s linear infinite;
-      pointer-events: none;
+      pointer-events: auto;
+      cursor: pointer;
       text-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+      transition: transform 0.3s ease, filter 0.3s ease;
+      z-index: 5;
+    }
+
+    .heart:hover {
+      transform: scale(1.5);
+      filter: brightness(1.3);
     }
 
     @keyframes floatUp {
@@ -58,7 +66,7 @@
       border-radius: 30px;
       text-align: center;
       width: 90%;
-      max-width: 380px;
+      max-width: 420px;
       box-shadow: 
         0 8px 32px rgba(168, 85, 247, 0.15),
         0 0 60px rgba(236, 72, 153, 0.1),
@@ -127,9 +135,47 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Mood selector */
+    .mood-selector {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .mood-btn {
+      padding: 10px 18px;
+      border: 2px solid rgba(168, 85, 247, 0.3);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      color: #6b4c7a;
+    }
+
+    .mood-btn:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: scale(1.05);
+    }
+
+    .mood-btn.active {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(236, 72, 153, 0.6));
+      color: white;
+      border-color: transparent;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
     button {
-      margin-top: 10px;
-      padding: 14px 28px;
+      padding: 14px 24px;
       border: none;
       border-radius: 25px;
       cursor: pointer;
@@ -191,6 +237,30 @@
       51%, 100% { opacity: 0; }
     }
 
+    /* Heart burst effect */
+    .heart-burst {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .heart-burst span {
+      position: absolute;
+      font-size: 24px;
+      animation: burst 1s ease-out forwards;
+    }
+
+    @keyframes burst {
+      0% {
+        transform: translate(0, 0) scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(1);
+        opacity: 0;
+      }
+    }
+
     /* Responsive design */
     @media (max-width: 480px) {
       .card {
@@ -211,8 +281,13 @@
       }
 
       button {
-        padding: 12px 24px;
+        padding: 12px 20px;
         font-size: 13px;
+      }
+
+      .mood-btn {
+        padding: 8px 14px;
+        font-size: 14px;
       }
     }
 
@@ -231,6 +306,10 @@
       0%, 100% { transform: scale(1); opacity: 0.5; }
       50% { transform: scale(1.2); opacity: 0.8; }
     }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
@@ -241,42 +320,193 @@
   <div class="card">
     <h1 id="greeting"></h1>
     <p class="subtitle" id="subtitle"></p>
+    
+    <div class="mood-selector" id="moodSelector">
+      <button class="mood-btn" onclick="selectMood('happy')">😊 Happy</button>
+      <button class="mood-btn" onclick="selectMood('sad')">😢 Sad</button>
+      <button class="mood-btn" onclick="selectMood('tired')">😴 Tired</button>
+      <button class="mood-btn" onclick="selectMood('loved')">💕 Loved</button>
+      <button class="mood-btn" onclick="selectMood('excited')">🎉 Excited</button>
+    </div>
+    
     <p class="compliment" id="compliment"></p>
-    <button onclick="changeCompliment()">✨ Send a little joy</button>
+    
+    <div class="action-buttons">
+      <button onclick="sendVirtualHug()">🤗 Virtual Hug</button>
+      <button onclick="sendLove()">💕 Send Love</button>
+      <button onclick="makeSmile()">✨ Make You Smile</button>
+    </div>
   </div>
 
   <script>
+    const nicknames = ['babi', 'bab', 'babs'];
+
     const greetings = [
-      "Hello, Aizel 💜",
-      "Hey there, Aizel ✨",
-      "Hi Aizel 🌸",
-      "Hello, beautiful soul 💗"
+      "Hello, babi 💜",
+      "Hey there, babs ✨",
+      "Hi bab 🌸",
+      "Hello, my beautiful soul 💗"
     ];
 
     const subtitles = [
-      "This little corner of the internet is just for you",
-      "Made with warmth, just to brighten your day",
-      "A gentle reminder that you're appreciated",
-      "Because you deserve a moment of joy"
+      "How are you feeling today, babi?",
+      "Pick your mood below ↓",
+      "This space is all about you, babs",
+      "Let's match the vibe to your heart, bab"
     ];
 
-    const compliments = [
-      "Your smile has this way of lighting up a room, you know? 💜",
-      "There's something so peaceful about your presence, Aizel 🌸",
-      "You have this quiet strength that's truly inspiring ✨",
-      "The way you see the world is beautiful, never lose that 💗",
-      "You deserve all the gentle moments life has to offer 🌷",
-      "Your kindness radiates in ways you might not even notice 💜",
-      "Simply being you is enough, and that's wonderful ✨",
-      "You bring a special kind of warmth wherever you go 🌸",
-      "The world is better with you in it, Aizel 💗",
-      "Your grace and elegance are truly captivating ✨"
+    const moodMessages = {
+      happy: [
+        "Your happiness is absolutely contagious, babi! Keep shining bright ✨",
+        "The world lights up when you're happy, babs 💜",
+        "Your joy is beautiful, let it spread, bab! 🌸",
+        "So glad to see you smiling today, babi! 💗",
+        "You look like sunshine when you're happy ☀️",
+        "That smile of yours could heal bad days 💜",
+        "Keep glowing like that, it suits you ✨",
+        "Happiness looks really good on you, babi 🌸",
+        "I hope nothing steals that smile today 💗",
+        "Seeing you happy makes everything feel lighter ✨",
+        "You deserve days full of this kind of joy 💜",
+        "Your energy right now is really beautiful, babi 🌸",
+        "Stay in that good mood a little longer, please 💗",
+        "You’re literally a walking good vibe ☀️",
+        "Protect that happiness at all costs, babi ✨",
+        "You make happy look so natural 💜",
+        "That joy in you is rare and special 🌸",
+        "I hope today keeps treating you gently 💗",
+        "You’re glowing more than usual today, babi ✨",
+        "Never lose that light in you 💜"
+      ],
+
+      sad: [
+        "It's okay to feel sad sometimes, babi. You're not alone 💜",
+        "Even on hard days, you're still wonderful, babs 🌸",
+        "Take your time, bab. Healing happens at its own pace 💗",
+        "Sending you the gentlest hug right now, babi 🤗",
+        "I’m here, even if things feel heavy 💜",
+        "You don’t have to carry everything alone 🌸",
+        "It’s alright to slow down today, babi 💗",
+        "This feeling won’t stay forever, I promise 💜",
+        "You’re still loved even on quiet days 🌸",
+        "I wish I could take a bit of that weight off you 💗",
+        "Be kind to yourself right now, babi 💜",
+        "You’re doing better than you think 🌸",
+        "It’s okay not to be okay today 💗",
+        "I’m not going anywhere, babi 💜",
+        "You matter even on your hardest days 🌸",
+        "Let yourself breathe a little 💗",
+        "This moment doesn’t define you 💜",
+        "I hope tomorrow feels lighter for you 🌸",
+        "You’re still deeply cared for, babi 💗",
+        "Take things one soft step at a time 💜"
+      ],
+
+      tired: [
+        "Rest is not lazy, babi. You've earned it 💜",
+        "Let yourself recharge, babs. You do so much 🌸",
+        "Even stars need to rest before they shine again, bab ✨",
+        "Be gentle with yourself today, babi 💗",
+        "You’ve been pushing hard, slow down a bit 💜",
+        "It’s okay to pause and do nothing 🌸",
+        "Your body is asking for rest, listen to it 💗",
+        "You don’t always have to be productive, babi ✨",
+        "Resting doesn’t mean falling behind 💜",
+        "You deserve slow and quiet moments 🌸",
+        "Take a break, you’ve earned it more than you think 💗",
+        "Even your best needs recovery time 💜",
+        "It’s okay to just exist today 🌸",
+        "You’re allowed to rest without guilt 💗",
+        "Your energy matters too, babi ✨",
+        "Sleep if you need to, I’ll wait 💜",
+        "Don’t force yourself too hard today 🌸",
+        "You’ve done enough already 💗",
+        "Soft days are still important days 💜",
+        "Recharge slowly, I’ll be here 🌸"
+      ],
+
+      loved: [
+        "You are so incredibly loved, babi, more than you know 💜",
+        "You deserve all the love in the world, babs 🌸",
+        "Your heart is beautiful and worthy of everything, bab 💗",
+        "You're someone's favorite person, always remember that, babi ✨",
+        "You’re cared for more than you realize 💜",
+        "Even when you don’t feel it, you are loved 🌸",
+        "You matter deeply, babi 💗",
+        "There’s softness in the way people care for you ✨",
+        "You are important to more people than you think 💜",
+        "You deserve genuine love, always 🌸",
+        "You’re not alone in this world, babi 💗",
+        "You’re valued just as you are ✨",
+        "Someone out there is grateful for you 💜",
+        "You bring comfort to people without knowing 🌸",
+        "You are a blessing in quiet ways 💗",
+        "You are loved even in silence ✨",
+        "You deserve to be chosen every day 💜",
+        "You’re deeply appreciated, babi 🌸",
+        "You’re more special than you realize 💗",
+        "Love looks good on you 💜"
+      ],
+
+      excited: [
+        "Your excitement is magical, babi! Chase those dreams 💜",
+        "This energy is amazing, babs! Go get 'em! 🌸",
+        "The world is ready for your spark, bab ✨",
+        "Your enthusiasm is absolutely beautiful, babi 💗",
+        "I love seeing you this excited 💜",
+        "That energy is honestly inspiring 🌸",
+        "You’re unstoppable when you’re like this ✨",
+        "Keep that fire going, babi 💗",
+        "Something good is definitely coming your way 💜",
+        "Your hype is contagious in the best way 🌸",
+        "I hope everything goes your way today ✨",
+        "You were made for moments like this 💗",
+        "Go chase it, I’m rooting for you 💜",
+        "You’re glowing with ambition right now 🌸",
+        "This is your moment, babi ✨",
+        "I can feel your energy through the screen 💗",
+        "Keep going, don’t lose that spark 💜",
+        "You’re built for big things 🌸",
+        "Let that excitement lead you forward 💗",
+        "I love this version of you 💜"
+      ]
+    };
+
+        const compliments = [
+      "Your smile has this way of lighting up a room, you know, babi? 💜",
+      "There's something so peaceful about your presence, babs 🌸",
+      "You have this quiet strength that's truly inspiring, bab ✨",
+      "The way you see the world is beautiful, never lose that, babi 💗",
+      "You deserve all the gentle moments life has to offer, babs 🌷",
+      "Your kindness radiates in ways you might not even notice, bab 💜",
+      "Simply being you is enough, babi, and that's wonderful ✨",
+      "You bring a special kind of warmth wherever you go, babs 🌸",
+      "The world is better with you in it, bab 💗",
+      "Your grace and elegance are truly captivating, babi ✨",
+
+      "You have this calm energy that makes things feel easier 💜",
+      "It’s honestly comforting just talking to you, bab 🌸",
+      "There’s something really genuine about you that stands out ✨",
+      "You make ordinary moments feel special, babi 💗",
+      "You have a soft charm that’s hard to ignore 💜",
+      "The way you think is really refreshing, babs 🌸",
+      "You carry yourself in such a natural, beautiful way ✨",
+      "You’re the kind of person people feel safe around 💗",
+      "You don’t even try, but you leave a good impression everywhere 💜",
+      "There’s a quiet beauty in how you express yourself 🌸",
+      "You make kindness look effortless, babi ✨",
+      "You’ve got this soothing vibe that people notice instantly 💜",
+      "You’re more thoughtful than you probably realize 🌸",
+      "You have a way of making conversations feel easy 💗",
+      "Your energy feels really genuine, and that’s rare ✨",
+      "You stand out without even trying, babi 💜",
+      "There’s something really soft and comforting about you 🌸",
+      "You make people feel understood, even in small ways 💗",
+      "You’ve got a naturally warm personality ✨",
+      "You’re honestly one of those people who just feel “good” to be around 💜"
     ];
 
-    let currentGreeting = "";
-    let currentSubtitle = "";
-    let greetingIndex = 0;
-    let subtitleIndex = 0;
+    let currentMood = null;
 
     // Typing animation
     function typeText(element, text, speed = 80) {
@@ -295,36 +525,187 @@
       type();
     }
 
-    // Initialize with typing animation
-    function initialize() {
-      greetingIndex = Math.floor(Math.random() * greetings.length);
-      subtitleIndex = Math.floor(Math.random() * subtitles.length);
+    // Select mood
+    function selectMood(mood) {
+      currentMood = mood;
       
-      setTimeout(() => {
-        typeText(document.getElementById("greeting"), greetings[greetingIndex], 100);
-      }, 500);
+      // Update active button
+      document.querySelectorAll('.mood-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
       
-      setTimeout(() => {
-        typeText(document.getElementById("subtitle"), subtitles[subtitleIndex], 60);
-      }, 2000);
-
-      setTimeout(() => {
-        changeCompliment();
-      }, 3500);
-    }
-
-    // Change compliment with fade animation
-    function changeCompliment() {
+      // Show mood-specific message
+      const messages = moodMessages[mood];
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      
       const complimentEl = document.getElementById("compliment");
       complimentEl.style.animation = 'none';
-      complimentEl.offsetHeight; // Trigger reflow
+      complimentEl.offsetHeight;
       complimentEl.style.opacity = '0';
       
       setTimeout(() => {
-        const randomIndex = Math.floor(Math.random() * compliments.length);
-        complimentEl.textContent = compliments[randomIndex];
+        complimentEl.textContent = randomMessage;
         complimentEl.style.animation = 'fadeInCompliment 0.8s ease forwards';
       }, 300);
+
+      // Create heart burst
+      createHeartBurst(event.clientX, event.clientY);
+    }
+
+    // Send virtual hug
+    function sendVirtualHug() {
+      const messages = currentMood ? moodMessages[currentMood] : compliments;
+      const hugMessages = [
+        "🤗 Sending you the warmest virtual hug, babi",
+        "🤗 You're wrapped in love right now, babs",
+        "🤗 A gentle hug from across the screen, bab",
+        "🤗 Consider yourself hugged, beautiful soul",
+
+        "🤗 Tight virtual hug for you, take it slowly",
+        "🤗 You’re safe in this hug, babi",
+        "🤗 Holding you gently right now, babs",
+        "🤗 Soft hug coming your way ✨",
+        "🤗 I hope this hug makes your day lighter",
+        "🤗 Just a little reminder you’re cared for",
+        "🤗 Hugging you through the screen, bab",
+        "🤗 You don’t have to face things alone",
+        "🤗 A calm, quiet hug just for you",
+        "🤗 I’m sending comfort, not just a hug",
+        "🤗 Let this hug stay with you for a while",
+        "🤗 You’re being hugged extra gently today",
+        "🤗 Warm thoughts wrapped around you, babi",
+        "🤗 If hugs could fix things, this one would try",
+        "🤗 Soft support in hug form for you",
+        "🤗 You’re not alone in this moment",
+        "🤗 A long, steady hug for your heart",
+        "🤗 Hug delivered with care and patience",
+        "🤗 Rest in this hug for a bit, babi",
+        "🤗 Just breathing with you in this hug",
+        "🤗 A quiet hug for your tired moments"
+      ];
+    
+      
+      const complimentEl = document.getElementById("compliment");
+      complimentEl.style.animation = 'none';
+      complimentEl.offsetHeight;
+      complimentEl.style.opacity = '0';
+      
+      setTimeout(() => {
+        complimentEl.textContent = hugMessages[Math.floor(Math.random() * hugMessages.length)];
+        complimentEl.style.animation = 'fadeInCompliment 0.8s ease forwards';
+      }, 300);
+
+      createHeartBurst(window.innerWidth / 2, window.innerHeight / 2);
+    }
+
+    // Send love
+    function sendLove() {
+      const loveMessages = [
+        "💕 You are so loved, babi",
+        "💕 Sending you all my love, babs",
+        "💕 You deserve endless love and happiness, bab",
+        "💕 Your heart is precious and beautiful",
+
+        "💕 You’re deeply cared for, more than you think",
+        "💕 I hope you feel a little more loved right now",
+        "💕 You matter so much, babi",
+        "💕 There’s so much warmth being sent your way",
+        "💕 You deserve love that feels safe and real",
+        "💕 I hope your heart feels a bit lighter today",
+        "💕 You are important, always",
+        "💕 You’re not alone, even for a second",
+        "💕 You deserve gentle love every day",
+        "💕 Someone out there is really glad you exist",
+        "💕 You are appreciated more than you know",
+        "💕 You bring a lot of good into this world",
+        "💕 You deserve to be treated with care",
+        "💕 I hope love finds you in small ways today",
+        "💕 You are enough, just as you are",
+        "💕 You’re quietly special in your own way",
+        "💕 I’m rooting for your happiness always",
+        "💕 You deserve peace in your heart",
+        "💕 You are valued, even on your silent days",
+        "💕 Keep this love close to you today",
+        "💕 You’re someone worth cherishing"
+      ];
+      
+      const complimentEl = document.getElementById("compliment");
+      complimentEl.style.animation = 'none';
+      complimentEl.offsetHeight;
+      complimentEl.style.opacity = '0';
+      
+      setTimeout(() => {
+        complimentEl.textContent = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+        complimentEl.style.animation = 'fadeInCompliment 0.8s ease forwards';
+      }, 300);
+
+      // Create multiple heart bursts
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          createHeartBurst(
+            Math.random() * window.innerWidth,
+            Math.random() * window.innerHeight
+          );
+        }, i * 200);
+      }
+    }
+
+    // Make smile
+    function makeSmile() {
+      const smileMessages = currentMood ? moodMessages[currentMood] : compliments;
+      
+      const complimentEl = document.getElementById("compliment");
+      complimentEl.style.animation = 'none';
+      complimentEl.offsetHeight;
+      complimentEl.style.opacity = '0';
+      
+      setTimeout(() => {
+        complimentEl.textContent = smileMessages[Math.floor(Math.random() * smileMessages.length)];
+        complimentEl.style.animation = 'fadeInCompliment 0.8s ease forwards';
+      }, 300);
+
+      createHeartBurst(window.innerWidth / 2, window.innerHeight / 2);
+    }
+
+    // Heart burst effect
+    function createHeartBurst(x, y) {
+      const burst = document.createElement('div');
+      burst.className = 'heart-burst';
+      burst.style.left = x + 'px';
+      burst.style.top = y + 'px';
+      
+      const emojis = ['💜', '💗', '🌸', '✨', '💕', '🌷', '💖', '😊', '💝'];
+      
+      for (let i = 0; i < 12; i++) {
+        const span = document.createElement('span');
+        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        const angle = (i / 12) * Math.PI * 2;
+        const distance = 50 + Math.random() * 50;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        
+        span.style.setProperty('--tx', tx + 'px');
+        span.style.setProperty('--ty', ty + 'px');
+        
+        burst.appendChild(span);
+      }
+      
+      document.body.appendChild(burst);
+      
+      setTimeout(() => {
+        burst.remove();
+      }, 1000);
+    }
+
+    // Initialize with typing animation
+    function initialize() {
+      setTimeout(() => {
+        typeText(document.getElementById("greeting"), greetings[Math.floor(Math.random() * greetings.length)], 100);
+      }, 500);
+      
+      setTimeout(() => {
+        typeText(document.getElementById("subtitle"), subtitles[Math.floor(Math.random() * subtitles.length)], 60);
+      }, 2000);
     }
 
     // Floating hearts generator
@@ -338,6 +719,12 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = Math.random() * 25 + 12 + "px";
       heart.style.animationDuration = (Math.random() * 4 + 6) + "s";
+
+      // Add click handler
+      heart.addEventListener('click', (e) => {
+        createHeartBurst(e.clientX, e.clientY);
+        heart.remove();
+      });
 
       document.body.appendChild(heart);
 
