@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Aizel 💜</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    /* floating hearts */
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.6);
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: white;
+      color: #a855f7;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1 id="text">Hi Aizel 💜</h1>
+  <p id="sub">Someone made this just to make you smile ✨</p>
+  <button onclick="changeMessage()">Tap for a smile</button>
+</div>
+
+<script>
+  const messages = [
+    "You have a really calming presence, Aizel 💜",
+    "Purple and pink suit your vibe perfectly ✨",
+    "I hope today treats you gently 🌸",
+    "You’re someone’s reason to smile today :)",
+    "If you feel tired, take a soft breath—you’re doing fine 💗"
+  ];
+
+  function changeMessage() {
+    const i = Math.floor(Math.random() * messages.length);
+    document.getElementById("text").innerText = messages[i];
+    document.getElementById("sub").innerText = "— from someone who appreciates you";
+  }
+
+  // floating hearts generator
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💜";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
