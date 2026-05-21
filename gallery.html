@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Moments 🌸</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* Soft pink gradients matching the main page */
+      background: linear-gradient(135deg, #ffe1ec 0%, #ffc2d4 25%, #ffb3c6 50%, #ffc2d4 75%, #ffe1ec 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: #8a2b56;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating background hearts */
+    .bg-heart {
+      position: fixed;
+      color: rgba(255, 77, 133, 0.3);
+      animation: floatUp 10s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+    }
+
+    /* Header & Navigation */
+    .header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      color: #a83c6b;
+      text-shadow: 0 2px 10px rgba(255, 77, 133, 0.2);
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 16px;
+      color: #c54d80;
+      font-style: italic;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0 40px;
+      position: relative;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(255, 77, 133, 0.8), rgba(255, 126, 179, 0.8));
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 4px 15px rgba(255, 77, 133, 0.3);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 77, 133, 0.5);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.5);
+      color: #a83c6b;
+      border: 2px solid rgba(255, 77, 133, 0.4);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 15px rgba(255, 77, 133, 0.2);
+    }
+
+    /* Hidden file input */
+    #fileInput {
+      display: none;
+    }
+
+    /* Gallery Grid */
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+      padding: 20px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+      padding-bottom: 60px;
+    }
+
+    /* Empty state message */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 2px dashed rgba(255, 77, 133, 0.4);
+      color: #a83c6b;
+    }
+
+    .empty-state h2 {
+      margin-bottom: 10px;
+    }
+
+    /* Polaroid Cards */
+    .polaroid {
+      background: #fff;
+      padding: 15px 15px 40px 15px;
+      border-radius: 4px;
+      box-shadow: 0 8px 25px rgba(200, 50, 100, 0.15);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      cursor: pointer;
+      animation: popIn 0.5s ease forwards;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    @keyframes popIn {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Alternate tilting for scrapbook effect */
+    .polaroid:nth-child(even) { transform: rotate(3deg); }
+    .polaroid:nth-child(odd) { transform: rotate(-3deg); }
+
+    .polaroid:hover {
+      transform: scale(1.05) rotate(0deg);
+      box-shadow: 0 15px 35px rgba(255, 77, 133, 0.3);
+      z-index: 20;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 2px;
+      border: 1px solid #f0f0f0;
+    }
+
+    .polaroid::after {
+      content: '💕';
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      opacity: 0.7;
+    }
+
+    /* Remove button on hover */
+    .remove-btn {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 30px;
+      height: 30px;
+      background: #ff4d85;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(255, 77, 133, 0.4);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .polaroid:hover .remove-btn {
+      opacity: 1;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <a href="index.html" class="btn btn-secondary">‹ Back to Card</a>
+    
+    <button class="btn" onclick="document.getElementById('fileInput').click()">
+      📸 Add New
+    </button>
+    <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(event)">
+  </div>
+
+  <div class="gallery-container" id="gallery">
+    <div class="empty-state" id="emptyState">
+      <h2>No memories uploaded yet! 💕</h2>
+      <p>Click "Add New" to start building your scrapbook.</p>
+    </div>
+  </div>
+
+  <script>
+    const gallery = document.getElementById('gallery');
+    const emptyState = document.getElementById('emptyState');
+
+    // Handle file selection
+    function handleFiles(event) {
+      const files = event.target.files;
+      
+      if (files.length > 0) {
+        // Hide empty state message
+        emptyState.style.display = 'none';
+        
+        // Loop through all selected images
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          
+          if (file.type.startsWith('image/')) {
+            const imageUrl = URL.createObjectURL(file);
+            createPolaroid(imageUrl);
+          }
+        }
+      }
+      
+      // Reset input so the same file can be uploaded again if needed
+      event.target.value = '';
+    }
+
+    // Create the polaroid card
+    function createPolaroid(imageUrl) {
+      const polaroid = document.createElement('div');
+      polaroid.className = 'polaroid';
+      
+      // Create image element
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      
+      // Create remove button
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'remove-btn';
+      removeBtn.innerHTML = '×';
+      removeBtn.onclick = function(e) {
+        e.stopPropagation(); // Prevent clicking through
+        polaroid.style.transform = 'scale(0)';
+        polaroid.style.opacity = '0';
+        setTimeout(() => {
+          polaroid.remove();
+          checkEmptyState();
+        }, 300);
+      };
+
+      polaroid.appendChild(img);
+      polaroid.appendChild(removeBtn);
+      gallery.appendChild(polaroid);
+
+      // Create a little burst of hearts when a photo is added!
+      createHeartBurst();
+    }
+
+    // Check if gallery is empty to show the placeholder text
+    function checkEmptyState() {
+      const polaroids = document.querySelectorAll('.polaroid');
+      if (polaroids.length === 0) {
+        emptyState.style.display = 'block';
+      }
+    }
+
+    // Floating background hearts
+    function createBgHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("bg-heart");
+      const heartEmojis = ['💗', '🌸', '✨', '💕', '🌷', '💖'];
+      heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 25 + 15 + "px";
+      heart.style.animationDuration = (Math.random() * 5 + 8) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 13000);
+    }
+    
+    // Start spawning background hearts
+    setInterval(createBgHeart, 600);
+
+    // Simple heart burst effect when an image uploads
+    function createHeartBurst() {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const heart = document.createElement("div");
+          heart.classList.add("bg-heart");
+          heart.innerText = '💕';
+          heart.style.left = (40 + Math.random() * 20) + "vw";
+          heart.style.bottom = "0";
+          heart.style.fontSize = "30px";
+          heart.style.animationDuration = "3s";
+          heart.style.zIndex = "50";
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 3000);
+        }, i * 150);
+      }
+    }
+  </script>
+</body>
+</html>
