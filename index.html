@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aizel 💜</title>
+  <title>Aizel 🌸</title>
 
   <style>
     * {
@@ -16,13 +16,14 @@
       min-height: 100vh;
       overflow: hidden;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e8d5f2 0%, #f5d0e8 25%, #e8b4d8 50%, #d8b4e8 75%, #f0d4f0 100%);
+      /* Soft pink gradients */
+      background: linear-gradient(135deg, #ffe1ec 0%, #ffc2d4 25%, #ffb3c6 50%, #ffc2d4 75%, #ffe1ec 100%);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #5a4a6a;
+      color: #8a2b56; /* Deep pink text */
       position: relative;
     }
 
@@ -35,11 +36,11 @@
     /* Floating hearts */
     .heart {
       position: absolute;
-      color: rgba(168, 85, 247, 0.4);
+      color: rgba(255, 77, 133, 0.4); /* Hot pink */
       animation: floatUp 8s linear infinite;
       pointer-events: auto;
       cursor: pointer;
-      text-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+      text-shadow: 0 0 10px rgba(255, 77, 133, 0.3);
       transition: transform 0.3s ease, filter 0.3s ease;
       z-index: 5;
     }
@@ -68,8 +69,8 @@
       width: 90%;
       max-width: 420px;
       box-shadow: 
-        0 8px 32px rgba(168, 85, 247, 0.15),
-        0 0 60px rgba(236, 72, 153, 0.1),
+        0 8px 32px rgba(255, 77, 133, 0.15),
+        0 0 60px rgba(255, 126, 179, 0.1),
         inset 0 0 30px rgba(255, 255, 255, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.4);
       animation: fadeIn 1.5s ease-out;
@@ -95,7 +96,7 @@
       left: -2px;
       right: -2px;
       bottom: -2px;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3), rgba(168, 85, 247, 0.3));
+      background: linear-gradient(135deg, rgba(255, 77, 133, 0.3), rgba(255, 126, 179, 0.3), rgba(255, 77, 133, 0.3));
       border-radius: 32px;
       z-index: -1;
       opacity: 0.5;
@@ -106,8 +107,8 @@
       font-size: 28px;
       margin-bottom: 15px;
       font-weight: 600;
-      color: #6b4c7a;
-      text-shadow: 0 2px 10px rgba(168, 85, 247, 0.2);
+      color: #a83c6b;
+      text-shadow: 0 2px 10px rgba(255, 77, 133, 0.2);
       min-height: 40px;
     }
 
@@ -116,13 +117,13 @@
       opacity: 0.85;
       line-height: 1.6;
       margin-bottom: 25px;
-      color: #7a5a8a;
+      color: #c54d80;
     }
 
     .compliment {
       font-size: 16px;
       font-style: italic;
-      color: #8b5a9a;
+      color: #d15c8c;
       margin-bottom: 25px;
       min-height: 50px;
       opacity: 0;
@@ -140,7 +141,7 @@
 
     .arrow-btn {
       background: rgba(255, 255, 255, 0.4);
-      border: 2px solid rgba(168, 85, 247, 0.3);
+      border: 2px solid rgba(255, 77, 133, 0.3);
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -149,15 +150,15 @@
       justify-content: center;
       cursor: pointer;
       font-size: 18px;
-      color: #6b4c7a;
+      color: #a83c6b;
       transition: all 0.3s ease;
       flex-shrink: 0;
     }
 
     .arrow-btn:hover {
-      background: rgba(168, 85, 247, 0.2);
+      background: rgba(255, 77, 133, 0.2);
       transform: scale(1.1);
-      border-color: rgba(168, 85, 247, 0.5);
+      border-color: rgba(255, 77, 133, 0.5);
     }
 
     .arrow-btn:active {
@@ -185,22 +186,22 @@
 
     .mood-btn {
       padding: 10px 18px;
-      border: 2px solid rgba(168, 85, 247, 0.3);
+      border: 2px solid rgba(255, 77, 133, 0.3);
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.4);
       cursor: pointer;
       font-size: 16px;
       transition: all 0.3s ease;
-      color: #6b4c7a;
+      color: #a83c6b;
     }
 
     .mood-btn:hover {
-      background: rgba(168, 85, 247, 0.2);
+      background: rgba(255, 77, 133, 0.2);
       transform: scale(1.05);
     }
 
     .mood-btn.active {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.6), rgba(236, 72, 153, 0.6));
+      background: linear-gradient(135deg, rgba(255, 77, 133, 0.6), rgba(255, 126, 179, 0.6));
       color: white;
       border-color: transparent;
     }
@@ -218,14 +219,14 @@
       border: none;
       border-radius: 25px;
       cursor: pointer;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.8), rgba(236, 72, 153, 0.8));
+      background: linear-gradient(135deg, rgba(255, 77, 133, 0.8), rgba(255, 126, 179, 0.8));
       color: white;
       font-weight: 600;
       font-size: 14px;
       letter-spacing: 0.5px;
       box-shadow: 
-        0 4px 15px rgba(168, 85, 247, 0.3),
-        0 0 20px rgba(236, 72, 153, 0.2);
+        0 4px 15px rgba(255, 77, 133, 0.3),
+        0 0 20px rgba(255, 126, 179, 0.2);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
@@ -234,8 +235,8 @@
     button:hover {
       transform: translateY(-2px);
       box-shadow: 
-        0 6px 20px rgba(168, 85, 247, 0.4),
-        0 0 30px rgba(236, 72, 153, 0.3);
+        0 6px 20px rgba(255, 77, 133, 0.4),
+        0 0 30px rgba(255, 126, 179, 0.3);
     }
 
     button:active {
@@ -265,7 +266,7 @@
       display: inline-block;
       width: 2px;
       height: 28px;
-      background: #a855f7;
+      background: #ff4d85;
       margin-left: 2px;
       animation: blink 1s infinite;
       vertical-align: middle;
@@ -335,7 +336,7 @@
       position: absolute;
       width: 300px;
       height: 300px;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 77, 133, 0.15) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
       animation: glowPulse 4s ease-in-out infinite;
@@ -386,7 +387,7 @@
     const nicknames = ['babi', 'bab', 'babs'];
 
     const greetings = [
-      "Hello, babi 💜",
+      "Hello, babi 💕",
       "Hey there, babs ✨",
       "Hi bab 🌸",
       "Hello, my beautiful soul 💗"
@@ -395,414 +396,413 @@
     const subtitles = [
       "How are you feeling today, babi?",
       "Pick your mood below ↓",
-      "This space is all about you, babs",
-      "Let's match the vibe to your heart, bab"
+      "This space is all about you",
+      "Let's match the vibe to your heart"
     ];
 
     const moodMessages = {
       happy: [
         "Your happiness is absolutely contagious, babi! Keep shining bright ✨",
-        "The world lights up when you're happy, babs 💜",
+        "The world lights up when you're happy, babs 💕",
         "Your joy is beautiful, let it spread, bab! 🌸",
         "So glad to see you smiling today, babi! 💗",
         "You look like sunshine when you're happy ☀️",
-        "That smile of yours could heal bad days 💜",
+        "That smile of yours could heal bad days 💕",
         "Keep glowing like that, it suits you ✨",
         "Happiness looks really good on you, babi 🌸",
         "I hope nothing steals that smile today 💗",
         "Seeing you happy makes everything feel lighter ✨",
-        "You deserve days full of this kind of joy 💜",
+        "You deserve days full of this kind of joy 💕",
         "Your energy right now is really beautiful, babi 🌸",
         "Stay in that good mood a little longer, please 💗",
         "You’re literally a walking good vibe ☀️",
         "Protect that happiness at all costs, babi ✨",
-        "You make happy look so natural 💜",
+        "You make happy look so natural 💕",
         "That joy in you is rare and special 🌸",
         "I hope today keeps treating you gently 💗",
         "You’re glowing more than usual today, babi ✨",
-        "Never lose that light in you, zel 💜",
+        "Never lose that light in you, zel 💕",
         "Seeing you happy feels like everything is okay in the world again, babi 🌸",
         "Your smile has this quiet way of reaching people’s hearts, babs 💗",
         "I hope this happiness stays a little longer in your chest, bab ✨",
-        "You deserve a kind of joy that doesn’t fade easily, zel 💜",
+        "You deserve a kind of joy that doesn’t fade easily, zel 💕",
         "It feels peaceful just knowing you're smiling right now, babi 🌸",
         "Your happiness feels like something soft and rare, babs 💗",
         "I hope life keeps giving you gentle reasons to smile, bab ✨",
-        "There’s something healing about seeing you this happy, zel 💜",
+        "There’s something healing about seeing you this happy, zel 💕",
         "You don’t even realize how much your smile changes things, babi 🌸",
         "Your joy feels like calm after a long day, babs 💗",
         "I hope your heart remembers this feeling, bab ✨",
-        "You deserve happiness that feels safe, not temporary, zel 💜",
+        "You deserve happiness that feels safe, not temporary, zel 💕",
         "You smiling like this makes the world feel softer, babi 🌸",
         "I hope nothing interrupts this peaceful moment for you, babs 💗",
         "You look like someone who finally feels okay again, bab ✨",
-        "Your happiness feels deeper than just a mood, zel 💜",
+        "Your happiness feels deeper than just a mood, zel 💕",
         "It’s honestly beautiful how naturally you shine when you're happy, babi 🌸",
         "I hope this feeling settles gently in your heart, babs 💗",
         "You deserve happiness that stays, not just visits, bab ✨",
-        "Your smile feels like something I’d never get tired of seeing, zel 💜",
+        "Your smile feels like something I’d never get tired of seeing, zel 💕",
         "It’s like your whole presence softens when you're happy, babi 🌸",
         "I hope today becomes one of your favorite memories, babs 💗",
         "You feel lighter when you’re happy… and it shows, bab ✨",
-        "There’s something really comforting about your joy, zel 💜",
+        "There’s something really comforting about your joy, zel 💕",
         "I hope you never forget how good this feels, babi 🌸",
         "Your happiness quietly changes the atmosphere around you, babs 💗",
         "You deserve mornings that start like this every day, bab ✨",
-        "Seeing you like this feels like a small blessing, zel 💜",
+        "Seeing you like this feels like a small blessing, zel 💕",
         "I hope your heart smiles even when your face isn’t, babi 🌸",
         "You’re the kind of happy that feels real and rare, babs 💗",
         "Your joy makes everything feel a little less heavy, bab ✨",
-        "I hope life keeps being kind to you like this, zel 💜",
+        "I hope life keeps being kind to you like this, zel 💕",
         "You deserve a happiness that sits deeply in your soul, babi 🌸",
         "Your smile feels like it belongs in peaceful moments, babs 💗",
         "I hope this happiness stays with you even after today, bab ✨",
-        "You’re glowing in a way that feels almost emotional, zel 💜",
+        "You’re glowing in a way that feels almost emotional, zel 💕",
         "There’s warmth in your happiness that’s hard to explain, babi 🌸",
         "I hope you feel as light as you look right now, babs 💗",
         "You deserve happiness that feels like home, bab ✨",
-        "Your joy feels like something worth protecting, zel 💜",
+        "Your joy feels like something worth protecting, zel 💕",
         "I hope this smile reaches deeper than your thoughts, babi 🌸",
         "You look like a moment I’d want to pause, babs 💗",
         "Your happiness feels like quiet peace finally arriving, bab ✨",
-        "I hope you carry this feeling with you gently, zel 💜",
+        "I hope you carry this feeling with you gently, zel 💕",
         "You’re really beautiful when you're truly happy, babi 🌸"
       ],
 
       sad: [
-        "It's okay to feel sad sometimes, babi. You're not alone 💜",
+        "It's okay to feel sad sometimes, babi. You're not alone 💕",
         "Even on hard days, you're still wonderful, babs 🌸",
         "Take your time, bab. Healing happens at its own pace 💗",
         "Sending you the gentlest hug right now, babi 🤗",
-        "I’m here, even if things feel heavy 💜",
+        "I’m here, even if things feel heavy 💕",
         "You don’t have to carry everything alone 🌸",
         "It’s alright to slow down today, babi 💗",
-        "This feeling won’t stay forever, I promise 💜",
+        "This feeling won’t stay forever, I promise 💕",
         "You’re still loved even on quiet days 🌸",
         "I wish I could take a bit of that weight off you 💗",
-        "Be kind to yourself right now, babi 💜",
+        "Be kind to yourself right now, babi 💕",
         "You’re doing better than you think 🌸",
         "It’s okay not to be okay today 💗",
-        "I’m not going anywhere, babi 💜",
+        "I’m not going anywhere, babi 💕",
         "You matter even on your hardest days 🌸",
         "Let yourself breathe a little 💗",
-        "This moment doesn’t define you 💜",
+        "This moment doesn’t define you 💕",
         "I hope tomorrow feels lighter for you 🌸",
         "You’re still deeply cared for, babi 💗",
-        "Take things one soft step at a time, zel 💜",
+        "Take things one soft step at a time, zel 💕",
         "It’s okay if today feels heavier than usual, babi 🌧️",
-        "You don’t need to explain your sadness to anyone, babs 💜",
+        "You don’t need to explain your sadness to anyone, babs 💕",
         "I hope you’re being gentle with yourself right now, bab 🌸",
         "You’re allowed to pause and just exist, zel 💗",
-        "Even storms inside you will eventually calm down, bab 💜",
+        "Even storms inside you will eventually calm down, bab 💕",
         "I’m sitting with you in this feeling, even quietly, babi 🌸",
         "You’re not a burden for feeling this way, babs 💗",
-        "It’s okay to not have answers right now, bab 💜",
+        "It’s okay to not have answers right now, bab 💕",
         "You’re still worthy, even in this moment, zel 🌸",
         "I hope you don’t forget how strong you’ve been, babi 💗",
-        "You’re allowed to rest emotionally too, babs 💜",
+        "You’re allowed to rest emotionally too, babs 💕",
         "Nothing about this changes how valuable you are, bab 🌸",
         "I hope you treat yourself softly today, zel 💗",
-        "You’re not lost, just tired right now, bab 💜",
+        "You’re not lost, just tired right now, bab 💕",
         "It’s okay to feel like everything is a bit too much, babi 🌸",
         "You don’t have to rush your healing, babs 💗",
-        "Even broken moments still pass, bab 💜",
+        "Even broken moments still pass, bab 💕",
         "You’re still you, even on days like this, zel 🌸",
         "I hope you can be a little kinder to your thoughts, babi 💗",
-        "You don’t need to pretend you're okay for me, babs 💜",
+        "You don’t need to pretend you're okay for me, babs 💕",
         "It’s safe to feel what you're feeling right now, bab 🌸",
         "I hope your heart gets some quiet soon, zel 💗",
-        "You’re still deserving of love in this state, bab 💜",
+        "You’re still deserving of love in this state, bab 💕",
         "Even if it hurts now, it won’t stay this way, babi 🌸",
         "I hope you let yourself slow down completely, babs 💗",
-        "You’re not alone in this moment, bab 💜",
+        "You’re not alone in this moment, bab 💕",
         "I wish I could just sit beside you right now, zel 🌸",
         "You’re allowed to feel everything, no filtering, babi 💗",
-        "This sadness doesn’t define your whole story, babs 💜",
+        "This sadness doesn’t define your whole story, babs 💕",
         "You are still whole, even if you don’t feel like it, bab 🌸",
         "I hope you remember you’ve survived worse, zel 💗",
-        "It’s okay if today is just about getting through it, bab 💜",
+        "It’s okay if today is just about getting through it, bab 💕",
         "You don’t need to fix everything today, babi 🌸",
         "I hope your heart feels less heavy soon, babs 💗",
-        "You’re still important, even in silence, bab 💜",
+        "You’re still important, even in silence, bab 💕",
         "Let yourself be human right now, zel 🌸",
         "I hope you’re being patient with yourself, babi 💗",
-        "You are still deeply cared for, even here, babs 💜",
+        "You are still deeply cared for, even here, babs 💕",
         "It’s okay if you just want quiet right now, bab 🌸",
         "I’m not disappointed in you, ever, zel 💗",
-        "You’re doing your best, even if it doesn’t feel like it, bab 💜",
+        "You’re doing your best, even if it doesn’t feel like it, bab 💕",
         "I hope you feel a little less alone reading this, babi 🌸",
         "You’re still enough, even in this state, babs 💗",
-        "It’s okay to let the world wait for a while, bab 💜",
+        "It’s okay to let the world wait for a while, bab 💕",
         "I hope your heart gets softer moments soon, zel 🌸"
       ],
 
       tired: [
-        "Rest is not lazy, babi. You've earned it 💜",
+        "Rest is not lazy, babi. You've earned it 💕",
         "Let yourself recharge, babs. You do so much 🌸",
         "Even stars need to rest before they shine again, bab ✨",
         "Be gentle with yourself today, babi 💗",
-        "You’ve been pushing hard, slow down a bit 💜",
+        "You’ve been pushing hard, slow down a bit 💕",
         "It’s okay to pause and do nothing 🌸",
         "Your body is asking for rest, listen to it 💗",
         "You don’t always have to be productive, babi ✨",
-        "Resting doesn’t mean falling behind 💜",
+        "Resting doesn’t mean falling behind 💕",
         "You deserve slow and quiet moments 🌸",
         "Take a break, you’ve earned it more than you think 💗",
-        "Even your best needs recovery time 💜",
+        "Even your best needs recovery time 💕",
         "It’s okay to just exist today 🌸",
         "You’re allowed to rest without guilt 💗",
         "Your energy matters too, babi ✨",
-        "Sleep if you need to, I’ll wait 💜",
+        "Sleep if you need to, I’ll wait 💕",
         "Don’t force yourself too hard today 🌸",
         "You’ve done enough already 💗",
-        "Soft days are still important days 💜",
+        "Soft days are still important days 💕",
         "Recharge slowly, I’ll be here, zel 🌸",
-        "You don’t need to prove anything by overworking yourself, bab 💜",
+        "You don’t need to prove anything by overworking yourself, bab 💕",
         "It’s okay to slow down without feeling guilty, babi 🌸",
         "Your exhaustion is valid, babs 💗",
-        "You’re allowed to take a real break, not just a short pause, bab 💜",
+        "You’re allowed to take a real break, not just a short pause, bab 💕",
         "Even your mind deserves rest right now, zel 🌸",
         "You can stop for a while, the world will still be there, babi 💗",
-        "I hope you’re not being too hard on yourself, babs 💜",
+        "I hope you’re not being too hard on yourself, babs 💕",
         "It’s okay if you’re not at full energy today, bab 🌸",
         "You’ve been carrying a lot more than you realize, zel 💗",
-        "Rest is part of progress too, bab 💜",
+        "Rest is part of progress too, bab 💕",
         "You don’t always have to push through everything, babi 🌸",
         "It’s safe to slow your pace today, babs 💗",
-        "You deserve rest without conditions, bab 💜",
+        "You deserve rest without conditions, bab 💕",
         "I hope you let yourself breathe fully right now, zel 🌸",
         "You’re not falling behind by resting, babi 💗",
-        "Your body knows when it needs a pause, babs 💜",
+        "Your body knows when it needs a pause, babs 💕",
         "You’ve been strong long enough, now rest, bab 🌸",
         "It’s okay if today is just about recovery, zel 💗",
-        "You don’t have to earn rest, you already deserve it, bab 💜",
+        "You don’t have to earn rest, you already deserve it, bab 💕",
         "Even your thoughts deserve a quiet moment, babi 🌸",
         "You’re allowed to be tired without explanation, babs 💗",
-        "I hope you’re giving yourself permission to slow down, bab 💜",
+        "I hope you’re giving yourself permission to slow down, bab 💕",
         "You’re doing enough just by existing today, zel 🌸",
         "Let the world wait for you a little, babi 💗",
-        "You don’t have to respond to everything right now, babs 💜",
+        "You don’t have to respond to everything right now, babs 💕",
         "Your rest is just as important as your effort, bab 🌸",
         "You’re not weak for feeling tired, zel 💗",
-        "I hope you’re being extra soft with yourself today, bab 💜",
+        "I hope you’re being extra soft with yourself today, bab 💕",
         "It’s okay to do absolutely nothing for a while, babi 🌸",
         "You’ve been holding so much, it’s okay to release it, babs 💗",
-        "I hope your body feels lighter soon, bab 💜",
+        "I hope your body feels lighter soon, bab 💕",
         "You deserve a slow and peaceful reset, zel 🌸",
         "Even resting you is still you doing your best, babi 💗",
-        "You’re allowed to pause the pressure, babs 💜",
+        "You’re allowed to pause the pressure, babs 💕",
         "I hope you’re not ignoring your tiredness, bab 🌸",
         "You don’t have to be available for everything, zel 💗",
-        "Your energy is precious, protect it, bab 💜",
+        "Your energy is precious, protect it, bab 💕",
         "You deserve rest that actually feels restful, babi 🌸",
         "It’s okay if today is just quiet recovery, babs 💗",
-        "You’re still enough even when you’re resting, bab 💜",
+        "You’re still enough even when you’re resting, bab 💕",
         "I hope you let yourself fully unplug, zel 🌸",
         "You don’t need to rush your recovery, babi 💗",
-        "Rest slowly, I’m right here with you, bab 💜"
+        "Rest slowly, I’m right here with you, bab 💕"
       ],
 
       loved: [
-        "You are so incredibly loved, babi, more than you know 💜",
+        "You are so incredibly loved, babi, more than you know 💕",
         "You deserve all the love in the world, babs 🌸",
         "Your heart is beautiful and worthy of everything, bab 💗",
         "You're someone's favorite person, always remember that, babi ✨",
-        "You’re cared for more than you realize 💜",
+        "You’re cared for more than you realize 💕",
         "Even when you don’t feel it, you are loved 🌸",
         "You matter deeply, babi 💗",
         "There’s softness in the way people care for you ✨",
-        "You are important to more people than you think 💜",
+        "You are important to more people than you think 💕",
         "You deserve genuine love, always 🌸",
         "You’re not alone in this world, babi 💗",
         "You’re valued just as you are ✨",
-        "Someone out there is grateful for you 💜",
+        "Someone out there is grateful for you 💕",
         "You bring comfort to people without knowing 🌸",
         "You are a blessing in quiet ways 💗",
         "You are loved even in silence ✨",
-        "You deserve to be chosen every day 💜",
+        "You deserve to be chosen every day 💕",
         "You’re deeply appreciated, babi 🌸",
         "You’re more special than you realize 💗",
-        "Love looks good on you 💜",
+        "Love looks good on you 💕",
         "You are loved in ways you don’t always see, but they are real 🌸",
-        "There’s a quiet place in someone’s heart where you matter deeply 💜",
+        "There’s a quiet place in someone’s heart where you matter deeply 💕",
         "You don’t have to earn love, you already deserve it 💗",
         "Even on your silent days, you are still loved ✨",
         "You are the kind of person people are quietly thankful for 🌸",
-        "Some hearts are softer because you exist in their life 💜",
+        "Some hearts are softer because you exist in their life 💕",
         "You are remembered in good thoughts more than you know 💗",
         "You don’t realize how much light you bring into people’s lives ✨",
         "You are held in more hearts than you can count 🌸",
-        "Even your presence alone means something to someone 💜",
+        "Even your presence alone means something to someone 💕",
         "You are not invisible to the people who truly care 💗",
         "You are loved in the simplest, most honest ways ✨",
         "You matter even in moments when you feel unimportant 🌸",
-        "There are people who feel better just because you exist 💜",
+        "There are people who feel better just because you exist 💕",
         "You are quietly cherished more than you think 💗",
         "Your existence makes certain lives softer ✨",
         "You are loved without needing to be anything else 🌸",
-        "Even your imperfections are gently accepted 💜",
+        "Even your imperfections are gently accepted 💕",
         "You are someone’s comfort without realizing it 💗",
         "You are not hard to love — you are already loved ✨",
         "There’s a gentle kind of love that follows you 🌸",
-        "You are held in quiet prayers and soft thoughts 💜",
+        "You are held in quiet prayers and soft thoughts 💕",
         "You are more emotionally important to others than you think 💗",
         "You are loved in ways that don’t always get spoken ✨",
         "You make life a little warmer for someone 🌸",
-        "You are appreciated in moments you’ll never notice 💜",
+        "You are appreciated in moments you’ll never notice 💕",
         "Even when you doubt yourself, you are still loved 💗",
         "You are not forgotten by the hearts that care ✨",
         "You are the reason someone smiles without telling you 🌸",
-        "You are deeply rooted in someone’s kindness 💜",
+        "You are deeply rooted in someone’s kindness 💕",
         "You are loved more consistently than you feel 💗",
         "You are part of someone’s peace ✨",
         "You are someone’s quiet happiness 🌸",
-        "You are loved in steady, unspoken ways 💜",
+        "You are loved in steady, unspoken ways 💕",
         "You are enough to be loved fully 💗",
         "You are not too much, not too little — just right ✨",
         "You are loved even when life feels loud 🌸",
-        "You are gently held in more hearts than you know 💜",
+        "You are gently held in more hearts than you know 💕",
         "You are someone’s soft spot 💗",
         "You are loved in ways that stay, not fade ✨",
         "You are worth staying for 🌸",
-        "You are loved even in your ordinary moments 💜",
+        "You are loved even in your ordinary moments 💕",
         "You are quietly irreplaceable 💗",
         "You are loved beyond what words can carry ✨",
         "You are a safe thought in someone’s mind 🌸",
-        "You are deeply, consistently cared for 💜",
+        "You are deeply, consistently cared for 💕",
         "You are more loved than your loneliness tells you 💗"
       ],
 
       excited: [
-        "Your excitement is magical, babi! Chase those dreams 💜",
+        "Your excitement is magical, babi! Chase those dreams 💕",
         "This energy is amazing, babs! Go get 'em! 🌸",
         "The world is ready for your spark, bab ✨",
         "Your enthusiasm is absolutely beautiful, babi 💗",
-        "I love seeing you this excited 💜",
+        "I love seeing you this excited 💕",
         "That energy is honestly inspiring 🌸",
         "You’re unstoppable when you’re like this ✨",
         "Keep that fire going, babi 💗",
-        "Something good is definitely coming your way 💜",
+        "Something good is definitely coming your way 💕",
         "Your hype is contagious in the best way 🌸",
         "I hope everything goes your way today ✨",
         "You were made for moments like this 💗",
-        "Go chase it, I’m rooting for you 💜",
+        "Go chase it, I’m rooting for you 💕",
         "You’re glowing with ambition right now 🌸",
         "This is your moment, babi ✨",
         "I can feel your energy through the screen 💗",
-        "Keep going, don’t lose that spark 💜",
+        "Keep going, don’t lose that spark 💕",
         "You’re built for big things 🌸",
         "Let that excitement lead you forward 💗",
-        "Love looks good on you, zel 💜",
+        "Love looks good on you, zel 💕",
         "You are loved in ways you don’t always see, but they are real, babi 🌸",
-        "There’s a quiet place in someone’s heart where you matter deeply, babs 💜",
+        "There’s a quiet place in someone’s heart where you matter deeply, babs 💕",
         "You don’t have to earn love, you already deserve it, bab 💗",
         "Even on your silent days, you are still loved, babi ✨",
         "You are the kind of person people are quietly thankful for, zel 🌸",
-        "Some hearts are softer because you exist in their life, bab 💜",
+        "Some hearts are softer because you exist in their life, bab 💕",
         "You are remembered in good thoughts more than you know, babs 💗",
         "You don’t realize how much light you bring into people’s lives, bab ✨",
         "You are held in more hearts than you can count, zel 🌸",
-        "Even your presence alone means something to someone, bab 💜",
+        "Even your presence alone means something to someone, bab 💕",
         "You are not invisible to the people who truly care, babi 💗",
         "You are loved in the simplest, most honest ways, babs ✨",
         "You matter even in moments when you feel unimportant, bab 🌸",
-        "There are people who feel better just because you exist, zel 💜",
+        "There are people who feel better just because you exist, zel 💕",
         "You are quietly cherished more than you think, babi 💗",
         "Your existence makes certain lives softer, babs ✨",
         "You are loved without needing to be anything else, bab 🌸",
-        "Even your imperfections are gently accepted, zel 💜",
+        "Even your imperfections are gently accepted, zel 💕",
         "You are someone’s comfort without realizing it, babi 💗",
         "You are not hard to love — you are already loved, bab ✨",
         "There’s a gentle kind of love that follows you, babs 🌸",
-        "You are held in quiet prayers and soft thoughts, bab 💜",
+        "You are held in quiet prayers and soft thoughts, bab 💕",
         "You are more emotionally important to others than you think, zel 💗",
         "You are loved in ways that don’t always get spoken, babi ✨",
         "You make life a little warmer for someone, babs 🌸",
-        "You are appreciated in moments you’ll never notice, bab 💜",
+        "You are appreciated in moments you’ll never notice, bab 💕",
         "Even when you doubt yourself, you are still loved, zel 💗",
         "You are not forgotten by the hearts that care, babi ✨",
         "You are the reason someone smiles without telling you, babs 🌸",
-        "You are deeply rooted in someone’s kindness, bab 💜",
+        "You are deeply rooted in someone’s kindness, bab 💕",
         "You are loved more consistently than you feel, zel 💗",
         "You are part of someone’s peace, babi ✨",
         "You are someone’s quiet happiness, babs 🌸",
-        "You are loved in steady, unspoken ways, bab 💜",
+        "You are loved in steady, unspoken ways, bab 💕",
         "You are enough to be loved fully, zel 💗",
         "You are not too much, not too little — just right, babi ✨",
         "You are loved even when life feels loud, babs 🌸",
-        "You are gently held in more hearts than you know, bab 💜",
+        "You are gently held in more hearts than you know, bab 💕",
         "You are someone’s soft spot, zel 💗",
         "You are loved in ways that stay, not fade, babi ✨",
         "You are worth staying for, babs 🌸",
-        "You are loved even in your ordinary moments, bab 💜",
+        "You are loved even in your ordinary moments, bab 💕",
         "You are quietly irreplaceable, zel 💗",
         "You are loved beyond what words can carry, babi ✨",
         "You are a safe thought in someone’s mind, babs 🌸",
-        "You are deeply, consistently cared for, bab 💜",
+        "You are deeply, consistently cared for, bab 💕",
         "You are more loved than your loneliness tells you, zel 💗"
       ]
     };
 
     const compliments = [
-      "Your smile has this way of lighting up a room, you know, babi? 💜",
+      "Your smile has this way of lighting up a room, you know, babi? 💕",
       "There's something so peaceful about your presence, babs 🌸",
       "You have this quiet strength that's truly inspiring, bab ✨",
       "The way you see the world is beautiful, never lose that, babi 💗",
       "You deserve all the gentle moments life has to offer, babs 🌷",
-      "Your kindness radiates in ways you might not even notice, bab 💜",
+      "Your kindness radiates in ways you might not even notice, bab 💕",
       "Simply being you is enough, babi, and that's wonderful ✨",
       "You bring a special kind of warmth wherever you go, babs 🌸",
       "The world is better with you in it, bab 💗",
       "Your grace and elegance are truly captivating, babi ✨",
-
-      "You have this calm energy that makes things feel easier 💜",
+      "You have this calm energy that makes things feel easier 💕",
       "It’s honestly comforting just talking to you, bab 🌸",
       "There’s something really genuine about you that stands out ✨",
       "You make ordinary moments feel special, babi 💗",
-      "You have a soft charm that’s hard to ignore 💜",
+      "You have a soft charm that’s hard to ignore 💕",
       "The way you think is really refreshing, babs 🌸",
       "You carry yourself in such a natural, beautiful way ✨",
       "You’re the kind of person people feel safe around 💗",
-      "You don’t even try, but you leave a good impression everywhere 💜",
+      "You don’t even try, but you leave a good impression everywhere 💕",
       "There’s a quiet beauty in how you express yourself 🌸",
       "You make kindness look effortless, babi ✨",
-      "You’ve got this soothing vibe that people notice instantly 💜",
+      "You’ve got this soothing vibe that people notice instantly 💕",
       "You’re more thoughtful than you probably realize 🌸",
       "You have a way of making conversations feel easy 💗",
       "Your energy feels really genuine, and that’s rare ✨",
-      "You stand out without even trying, babi 💜",
+      "You stand out without even trying, babi 💕",
       "There’s something really soft and comforting about you 🌸",
       "You make people feel understood, even in small ways 💗",
       "You’ve got a naturally warm personality ✨",
-      "You’re honestly one of those people who just feel “good” to be around, zel 💜",
+      "You’re honestly one of those people who just feel “good” to be around, zel 💕",
       "You have a way of making someone feel at ease without even trying, babi 🌸",
       "There’s something in your presence that feels quietly healing, babs 💗",
       "You don’t just exist in a room, you soften it, bab ✨",
-      "You make people feel a little less heavy just by being there, zel 💜",
+      "You make people feel a little less heavy just by being there, zel 💕",
       "You have this rare ability to feel both gentle and strong at the same time, babi 🌸",
       "Talking to you feels like a pause from all the noise, babs 💗",
       "You carry a kind of peace that people don’t forget easily, bab ✨",
-      "There’s a depth in you that shows even in small moments, zel 💜",
+      "There’s a depth in you that shows even in small moments, zel 💕",
       "You make sincerity feel effortless, babi 🌸",
       "You have a presence that lingers in a good way, babs 💗",
       "You’re the kind of person who makes ordinary moments feel meaningful, bab ✨",
-      "There’s a softness in you that the world really needs more of, zel 💜",
+      "There’s a softness in you that the world really needs more of, zel 💕",
       "You make understanding feel easy, babi 🌸",
       "You leave a quiet impact on people without realizing it, babs 💗",
       "You have a calm way of making everything feel less complicated, bab ✨",
-      "There’s something really grounding about your energy, zel 💜",
+      "There’s something really grounding about your energy, zel 💕",
       "You make people feel seen in the smallest ways, babi 🌸",
       "You don’t force anything, yet you’re naturally memorable, babs 💗",
       "You feel like comfort in human form sometimes, bab ✨",
-      "You have a gentle kind of strength that’s really rare, zel 💜",
+      "You have a gentle kind of strength that’s really rare, zel 💕",
       "You make conversations feel safe without even trying, babi 🌸",
       "There’s a quiet beauty in how you exist, babs 💗",
       "You’re the kind of person people feel grateful to know, bab ✨",
-      "You make warmth feel like a personality trait, zel 💜",
+      "You make warmth feel like a personality trait, zel 💕",
       "You have a presence that feels softly unforgettable, babi 🌸",
       "You make people feel a little more understood just by listening, babs 💗",
       "There’s something really pure in the way you carry yourself, bab ✨",
-      "You don’t need to try hard, you’re already enough, zel 💜",
+      "You don’t need to try hard, you’re already enough, zel 💕",
       "You make calm feel like something you can hold, babi 🌸",
       "You feel like a safe moment in a busy world, babs 💗"
     ];
@@ -862,7 +862,6 @@
         "🤗 You're wrapped in love right now, babs",
         "🤗 A gentle hug from across the screen, bab",
         "🤗 Consider yourself hugged, beautiful soul",
-
         "🤗 Tight virtual hug for you, take it slowly",
         "🤗 You're safe in this hug, babi",
         "🤗 Holding you gently right now, babs",
@@ -909,7 +908,6 @@
         "💕 Sending you all my love, babs",
         "💕 You deserve endless love and happiness, bab",
         "💕 Your heart is precious and beautiful",
-
         "💕 You're deeply cared for, more than you think",
         "💕 I hope you feel a little more loved right now",
         "💕 You matter so much, babi",
@@ -983,7 +981,7 @@
       burst.style.left = x + 'px';
       burst.style.top = y + 'px';
       
-      const emojis = ['💜', '💗', '🌸', '✨', '💕', '🌷', '💖', '😊', '💝'];
+      const emojis = ['💗', '🌸', '✨', '💕', '🌷', '💖', '😊', '💝'];
       
       for (let i = 0; i < 12; i++) {
         const span = document.createElement('span');
@@ -1044,11 +1042,11 @@
 
     // Initialize with typing animation
     function initialize() {
-  currentPhrases = compliments;
-  currentPhraseIndex = Math.floor(Math.random() * compliments.length);
-  
-  // Add this line so a phrase loads immediately!
-  updateCompliment();
+      currentPhrases = compliments;
+      currentPhraseIndex = Math.floor(Math.random() * compliments.length);
+      
+      // Add this line so a phrase loads immediately!
+      updateCompliment();
       
       setTimeout(() => {
         typeText(document.getElementById("greeting"), greetings[Math.floor(Math.random() * greetings.length)], 100);
@@ -1064,7 +1062,7 @@
       const heart = document.createElement("div");
       heart.classList.add("heart");
       
-      const heartEmojis = ['💜', '💗', '🌸', '✨', '💕', '🌷', '💖'];
+      const heartEmojis = ['💗', '🌸', '✨', '💕', '🌷', '💖'];
       heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
 
       heart.style.left = Math.random() * 100 + "vw";
