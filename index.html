@@ -24,7 +24,7 @@
       justify-content: center;
       align-items: center;
       color: #8a2b56; /* Deep pink text */
-      position: relative;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' style='font-size:24px;'><text y='20'>✨</text></svg>") 12 12, auto;
     }
 
     @keyframes gradientShift {
@@ -34,6 +34,18 @@
     }
 
     /* Floating hearts */
+    .sparkle {
+      position: absolute;
+      pointer-events: none;
+      font-size: 14px;
+      animation: sparkleFade 1s linear forwards;
+      z-index: 9999;
+    }
+
+    @keyframes sparkleFade {
+      0% { transform: scale(0) rotate(0deg); opacity: 1; }
+      100% { transform: scale(1.5) rotate(90deg); opacity: 0; transform: translateY(-20px); }
+    }
     .heart {
       position: absolute;
       color: rgba(255, 77, 133, 0.4); /* Hot pink */
@@ -61,6 +73,7 @@
     /* Glassmorphism card */
     .card {
       background: rgba(255, 255, 255, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       padding: 50px 40px;
@@ -78,6 +91,14 @@
       z-index: 10;
     }
 
+.card:hover {
+      transform: translateY(-5px);
+      box-shadow: 
+        0 12px 40px rgba(255, 77, 133, 0.25),
+        0 0 70px rgba(255, 126, 179, 0.2),
+        inset 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+    
     @keyframes fadeIn {
       from { 
         opacity: 0; 
@@ -1057,6 +1078,21 @@
         typeText(document.getElementById("subtitle"), subtitles[Math.floor(Math.random() * subtitles.length)], 60);
       }, 2000);
     }
+
+    // Magic Sparkle Trail
+    document.addEventListener('mousemove', function(e) {
+      if (Math.random() > 0.85) { // Creates sparkles randomly as you move
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        const sparkleEmojis = ['✨', '⭐', '💖'];
+        sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+        sparkle.style.left = (e.clientX - 10) + 'px';
+        sparkle.style.top = (e.clientY - 10) + 'px';
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    });
 
     // Floating hearts generator
     function createHeart() {
