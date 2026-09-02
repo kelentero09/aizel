@@ -38,7 +38,7 @@
       <div class="letter-paper">
         <p class="letter-line">Hi bab, happy first monthsary. &#10084;</p>
         <p class="letter-line">I know one month might seem short, but somehow you've already become such a special part of my days. Even with the distance between us, you still manage to make ordinary days feel a little better.</p>
-        <p class="letter-line">Thank you for existing bab, Little do you know that you saved me alot of times but i dont open it up.</p>
+        <p class="letter-line">Thank you for existing bab, Little do you know, you've saved me so many times in ways you probably don't even realize.</p>
         <p class="letter-line">I may not have something expensive to give you right now, so I made this little page instead. It's simple, babawi ako next time or next lifee chariz.</p>
         <p class="letter-line">One month down. I hope we get to celebrate many, many more together.</p>
         <p class="letter-line letter-closing">I miss you. I love you. Amping ka dira permi ahhh &#10084;</p>
@@ -107,13 +107,29 @@
           <p class="song-artist">Joseph Vincent</p>
         </div>
         <div class="song-divider"></div>
-        <!-- ======================================================
-             REPLACE THE HREF BELOW WITH YOUR SPOTIFY / YOUTUBE LINK
-             ====================================================== -->
-        <a href="https://open.spotify.com/track/2bkzqem4veyueCgtIJ7bMV?si=712fbd32a8e74d12" target="_blank" rel="noopener noreferrer" class="song-play-btn">
-          &#9654; Play Our Song
-        </a>
-        <p class="song-note">tap to listen together</p>
+
+        <!-- ===============================================================
+             INLINE SPOTIFY PLAYER
+             This embeds the song directly inside the card, so pressing play
+             plays it RIGHT HERE — no redirect, no leaving the page.
+
+             The src below already points to your track. To change it:
+             1. Open the song on Spotify
+             2. Click ... > Share > Embed track
+             3. Copy the src= URL (looks like https://open.spotify.com/embed/track/...)
+             4. Paste it into the src below.
+             ================================================================ -->
+        <div class="song-embed song-embed--spotify">
+          <iframe
+            class="song-embed-frame"
+            src="https://open.spotify.com/embed/track/2bkzqem4veyueCgtIJ7bMV"
+            title="Our First Song"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+        <p class="song-note">tap play to listen together</p>
       </div>
     </div>
   </section>
