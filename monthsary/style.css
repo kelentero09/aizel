@@ -1,0 +1,822 @@
+/* ==========================================================================
+   1st Monthsary — Style
+   Mobile-first, HTML + CSS only
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CSS VARIABLES & RESET
+   ========================================================================== */
+:root {
+  --pink: #f4a0b5;
+  --pink-deep: #d4627a;
+  --pink-light: #fce4ec;
+  --lavender: #c5a3cf;
+  --lavender-light: #ede0f4;
+  --cream: #fdf6f0;
+  --cream-warm: #faf0e6;
+  --white: #ffffff;
+  --text: #4a3040;
+  --text-soft: #6d4c5e;
+  --text-light: #8e6c80;
+  --accent: #e8879b;
+  --shadow-soft: 0 4px 20px rgba(180, 100, 130, 0.12);
+  --shadow-card: 0 8px 32px rgba(180, 100, 130, 0.15);
+  --shadow-glow: 0 0 40px rgba(228, 135, 155, 0.2);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-hand: 'Caveat', cursive;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==========================================================================
+   2. SHARED / UTILITY
+   ========================================================================== */
+.section-heading {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--pink-deep);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.section-heading--light {
+  color: var(--white);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   3. HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.25rem 2rem;
+  background: linear-gradient(160deg, var(--cream) 0%, var(--pink-light) 40%, var(--lavender-light) 100%);
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.45;
+  animation: glowPulse 6s ease-in-out infinite;
+}
+
+.hero-glow--1 {
+  background: var(--pink);
+  top: -80px;
+  right: -80px;
+}
+
+.hero-glow--2 {
+  background: var(--lavender);
+  bottom: -60px;
+  left: -60px;
+  animation-delay: 3s;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.6; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 420px;
+  width: 100%;
+}
+
+.hero-date {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.hero-title {
+  font-family: var(--font-hand);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--pink-deep);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.heart-accent {
+  color: var(--accent);
+  display: inline-block;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.hero-photo-frame {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.hero-photo {
+  width: 260px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 4px solid var(--white);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-photo:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+.hero-photo-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: calc(var(--radius-lg) + 8px);
+  background: linear-gradient(135deg, rgba(244, 160, 181, 0.25), rgba(197, 163, 207, 0.25));
+  filter: blur(16px);
+  z-index: -1;
+  animation: glowPulse 5s ease-in-out infinite;
+}
+
+.scroll-hint {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--text-light);
+  animation: fadeInUp 1.2s ease 0.6s both;
+}
+
+.scroll-arrow {
+  display: inline-block;
+  animation: bobDown 2s ease-in-out infinite;
+}
+
+@keyframes bobDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   4. LOVE LETTER
+   ========================================================================== */
+.letter-section {
+  padding: 4rem 1.25rem;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+}
+
+.letter-container {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.letter-deco {
+  font-size: 1.4rem;
+  color: var(--pink);
+  opacity: 0.5;
+  margin-bottom: 0.75rem;
+}
+
+.letter-deco--bottom {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.letter-paper {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(244, 160, 181, 0.15);
+  text-align: left;
+  position: relative;
+}
+
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  left: 2rem;
+  width: 1px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--pink-light) 0px,
+    var(--pink-light) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  opacity: 0.6;
+}
+
+.letter-line {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.letter-line:last-child {
+  margin-bottom: 0;
+}
+
+.letter-closing {
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   5. OUR LITTLE MOMENTS
+   ========================================================================== */
+.moments-section {
+  padding: 4rem 1.25rem;
+  background: linear-gradient(180deg, var(--white) 0%, var(--pink-light) 50%, var(--lavender-light) 100%);
+}
+
+.moments-subtitle {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 2.5rem;
+}
+
+.moments-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.polaroid {
+  position: relative;
+  width: 100%;
+}
+
+.polaroid-inner {
+  background: var(--white);
+  padding: 12px 12px 48px 12px;
+  border-radius: 4px;
+  box-shadow: 0 6px 24px rgba(150, 80, 110, 0.15);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+}
+
+.polaroid:hover .polaroid-inner {
+  transform: scale(1.03) rotate(0deg);
+  box-shadow: 0 12px 36px rgba(150, 80, 110, 0.25);
+}
+
+.polaroid--tilt-left .polaroid-inner {
+  transform: rotate(-2deg);
+}
+
+.polaroid--tilt-right .polaroid-inner {
+  transform: rotate(2deg);
+}
+
+.polaroid--tilt-left:nth-child(odd) .polaroid-inner {
+  transform: rotate(-1.5deg);
+}
+
+.polaroid--tilt-right:nth-child(even) .polaroid-inner {
+  transform: rotate(1.5deg);
+}
+
+.polaroid-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  color: var(--text-soft);
+}
+
+.polaroid-tape {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 60px;
+  height: 22px;
+  background: rgba(255, 220, 180, 0.55);
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.polaroid:nth-child(2) .polaroid-tape {
+  transform: translateX(-50%) rotate(3deg);
+}
+
+.polaroid:nth-child(3) .polaroid-tape {
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+/* ==========================================================================
+   6. LDR SECTION
+   ========================================================================== */
+.ldr-section {
+  padding: 0;
+  background: var(--lavender-light);
+}
+
+.ldr-container {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ldr-visual {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  flex-shrink: 0;
+}
+
+.ldr-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ldr-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(197, 163, 207, 0.1) 0%,
+    rgba(197, 163, 207, 0.6) 60%,
+    var(--lavender-light) 100%
+  );
+}
+
+.ldr-content {
+  padding: 2rem 1.5rem 3rem;
+  text-align: center;
+}
+
+.ldr-text {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ldr-text:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   7. OUR SONG
+   ========================================================================== */
+.song-section {
+  padding: 4rem 1.25rem;
+  background: linear-gradient(180deg, var(--lavender-light) 0%, var(--cream-warm) 100%);
+}
+
+.song-container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.song-card {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(244, 160, 181, 0.12);
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.song-card-glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(197, 163, 207, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.song-info {
+  margin-bottom: 1.25rem;
+}
+
+.song-label {
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--pink-deep);
+  margin-bottom: 0.2rem;
+}
+
+.song-artist {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.song-divider {
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pink), transparent);
+  margin: 0 auto 1.25rem;
+  border-radius: 1px;
+}
+
+.song-play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--lavender) 100%);
+  color: var(--white);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 16px rgba(212, 98, 122, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.song-play-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 98, 122, 0.4);
+}
+
+.song-play-btn:active {
+  transform: translateY(0);
+}
+
+.song-note {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   8. FINAL MESSAGE
+   ========================================================================== */
+.final-section {
+  padding: 5rem 1.25rem 4rem;
+  background: linear-gradient(160deg, var(--pink-light) 0%, var(--cream) 50%, var(--lavender-light) 100%);
+  text-align: center;
+}
+
+.final-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.final-deco {
+  font-size: 1rem;
+  color: var(--pink);
+  opacity: 0.45;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5em;
+}
+
+.final-deco--bottom {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+
+.final-big {
+  font-family: var(--font-hand);
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: var(--pink-deep);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+.final-sub {
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  color: var(--text-soft);
+  margin-bottom: 2rem;
+}
+
+.final-divider {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pink), transparent);
+  margin: 0 auto 2rem;
+  border-radius: 1px;
+}
+
+.final-sign {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: var(--text-light);
+  margin-bottom: 0.25rem;
+}
+
+.final-name {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--pink-deep);
+}
+
+/* ==========================================================================
+   9. RESPONSIVE — TABLETS (≥ 600px)
+   ========================================================================== */
+@media (min-width: 600px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-photo {
+    width: 300px;
+    height: 380px;
+  }
+
+  .section-heading {
+    font-size: 2.4rem;
+  }
+
+  .letter-paper {
+    padding: 2.5rem 3rem;
+  }
+
+  .letter-line {
+    font-size: 1.3rem;
+  }
+
+  .moments-gallery {
+    flex-direction: row;
+    max-width: 700px;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  .polaroid {
+    flex: 1;
+  }
+
+  .polaroid-img {
+    height: 240px;
+  }
+
+  .ldr-container {
+    flex-direction: row;
+    min-height: 400px;
+  }
+
+  .ldr-visual {
+    width: 45%;
+    height: auto;
+  }
+
+  .ldr-photo-overlay {
+    background: linear-gradient(
+      to right,
+      rgba(197, 163, 207, 0.1) 0%,
+      rgba(197, 163, 207, 0.5) 70%,
+      var(--lavender-light) 100%
+    );
+  }
+
+  .ldr-content {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 2.5rem;
+  }
+
+  .final-big {
+    font-size: 3.2rem;
+  }
+
+  .final-sub {
+    font-size: 1.8rem;
+  }
+}
+
+/* ==========================================================================
+   10. RESPONSIVE — DESKTOP (≥ 960px)
+   ========================================================================== */
+@media (min-width: 960px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+
+  .hero-photo {
+    width: 340px;
+    height: 420px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .section-heading {
+    font-size: 2.8rem;
+  }
+
+  .letter-container {
+    max-width: 560px;
+  }
+
+  .letter-paper {
+    padding: 3rem 3.5rem;
+  }
+
+  .letter-line {
+    font-size: 1.35rem;
+  }
+
+  .moments-gallery {
+    max-width: 860px;
+    gap: 2.5rem;
+  }
+
+  .polaroid-img {
+    height: 300px;
+  }
+
+  .ldr-container {
+    min-height: 440px;
+  }
+
+  .ldr-content {
+    padding: 3rem;
+  }
+
+  .ldr-text {
+    font-size: 1.3rem;
+  }
+
+  .song-container {
+    max-width: 460px;
+  }
+
+  .song-card {
+    padding: 2.5rem 2rem;
+  }
+
+  .final-big {
+    font-size: 3.8rem;
+  }
+
+  .final-sub {
+    font-size: 2rem;
+  }
+}
+
+/* ==========================================================================
+   11. REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==========================================================================
+   12. SMALL SCREENS (≤ 360px)
+   ========================================================================== */
+@media (max-width: 360px) {
+  .hero {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-photo {
+    width: 220px;
+    height: 280px;
+  }
+
+  .letter-paper {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .letter-line {
+    font-size: 1.1rem;
+    padding-left: 0.75rem;
+  }
+
+  .polaroid-img {
+    height: 240px;
+  }
+
+  .polaroid-caption {
+    font-size: 0.95rem;
+  }
+
+  .final-big {
+    font-size: 2.2rem;
+  }
+
+  .final-sub {
+    font-size: 1.4rem;
+  }
+}
